@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>沿海区域成本分析仪表盘总览</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #1a365d 0%, #2c5282 50%, #2b6cb0 100%); min-height: 100vh; padding: 40px 20px; }
+  .container { max-width: 1000px; margin: 0 auto; }
+  .header { text-align: center; color: #fff; margin-bottom: 40px; }
+  .header h1 { font-size: 32px; margin-bottom: 10px; }
+  .header p { font-size: 15px; opacity: 0.8; }
+  .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .card { background: #fff; border-radius: 14px; padding: 28px; text-decoration: none; color: inherit; transition: all 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.15); display: flex; flex-direction: column; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.25); }
+  .card-icon { width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 16px; }
+  .card h3 { font-size: 20px; color: #1a365d; margin-bottom: 8px; }
+  .card p { font-size: 13px; color: #718096; line-height: 1.6; flex: 1; }
+  .card-tag { display: inline-block; margin-top: 14px; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+  .icon-labor { background: linear-gradient(135deg, #fed7d7, #feb2b2); }
+  .icon-electric { background: linear-gradient(135deg, #fefcbf, #faf089); }
+  .icon-mud { background: linear-gradient(135deg, #c6f6d5, #9ae6b4); }
+  .icon-blast { background: linear-gradient(135deg, #bee3f8, #90cdf4); }
+  .tag-labor { background: #fff5f5; color: #c53030; }
+  .tag-electric { background: #fffff0; color: #975a16; }
+  .tag-mud { background: #f0fff4; color: #276749; }
+  .tag-blast { background: #ebf8ff; color: #2b6cb0; }
+  .footer { text-align: center; color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 40px; }
+  @media (max-width: 640px) {
+    .card-grid { grid-template-columns: 1fr; }
+    .header h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>沿海区域成本分析仪表盘</h1>
+    <p>点击下方卡片进入对应成本模块的交互式分析仪表盘</p>
+  </div>
+  <div class="card-grid">
+    <a class="card" href="人工成本交互式仪表盘.html">
+      <div class="card-icon icon-labor">👷</div>
+      <h3>人工成本分析</h3>
+      <p>2025-2026年人工费、产能、单吨成本、新老线效率对比，支持年份切换与两年同比分析。</p>
+      <span class="card-tag tag-labor">人工费 · 产能 · 单吨成本</span>
+    </a>
+    <a class="card" href="电费成本交互式仪表盘.html">
+      <div class="card-icon icon-electric">⚡</div>
+      <h3>电费成本分析</h3>
+      <p>2025-2026年总电费、产能、单吨电费、单吨电耗趋势，谷峰电价与能耗效率分析。</p>
+      <span class="card-tag tag-electric">电费 · 电耗 · 单吨成本</span>
+    </a>
+    <a class="card" href="泥饼处置成本交互式仪表盘.html">
+      <div class="card-icon icon-mud">🏗️</div>
+      <h3>泥饼处置成本分析</h3>
+      <p>2025-2026年泥饼处置量、处置单价、处置总价、泥饼产率趋势，按结算期统计。</p>
+      <span class="card-tag tag-mud">处置量 · 单价 · 产率</span>
+    </a>
+    <a class="card" href="爆破成本交互式仪表盘.html">
+      <div class="card-icon icon-blast">💥</div>
+      <h3>爆破成本分析</h3>
+      <p>2025-2026年爆破总成本、开采量、综合均价、宕渣与骨料开采单价对比，按结算期统计。</p>
+      <span class="card-tag tag-blast">爆破成本 · 开采量 · 均价</span>
+    </a>
+  </div>
+  <div class="footer">
+    数据来源：核心成本控制套表 | 仪表盘支持2025年/2026年/两年对比三种模式切换
+  </div>
+</div>
+</body>
+</html>
