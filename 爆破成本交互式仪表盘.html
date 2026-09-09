@@ -72,9 +72,9 @@
     </div>
     <div class="kpi-compare" id="kpi-compare-total">
       <div class="kpi-compare-row">
-        <span class="kpi-old-val">15974.49</span>
+        <span class="kpi-old-val">12036.42</span>
         <span class="kpi-arrow">→</span>
-        <span class="kpi-new-val" style="color:#E8684A">9216.59</span>
+        <span class="kpi-new-val" style="color:#5B8FF9">9216.59</span>
         <span class="kpi-compare-unit">万元</span>
       </div>
     </div>
@@ -87,7 +87,7 @@
     </div>
     <div class="kpi-compare" id="kpi-compare-volume">
       <div class="kpi-compare-row">
-        <span class="kpi-old-val">2309.73</span>
+        <span class="kpi-old-val">1735.95</span>
         <span class="kpi-arrow">→</span>
         <span class="kpi-new-val" style="color:#5B8FF9">1290.62</span>
         <span class="kpi-compare-unit">万吨</span>
@@ -102,7 +102,7 @@
     </div>
     <div class="kpi-compare" id="kpi-compare-avgprice">
       <div class="kpi-compare-row">
-        <span class="kpi-old-val">6.92</span>
+        <span class="kpi-old-val">6.93</span>
         <span class="kpi-arrow">→</span>
         <span class="kpi-new-val" style="color:#E8684A">7.14</span>
         <span class="kpi-compare-unit">元/吨</span>
@@ -117,7 +117,7 @@
     </div>
     <div class="kpi-compare" id="kpi-compare-aggregate">
       <div class="kpi-compare-row">
-        <span class="kpi-old-val">6.85</span>
+        <span class="kpi-old-val">6.84</span>
         <span class="kpi-arrow">→</span>
         <span class="kpi-new-val" style="color:#E8684A">6.95</span>
         <span class="kpi-compare-unit">元/吨</span>
@@ -225,14 +225,17 @@ function renderCharts(data, mode) {
     document.getElementById('title2').textContent = '开采均价趋势（2026年1-8月，宕渣 vs 骨料）';
     document.getElementById('title3').textContent = '月爆破成本与开采量关系（2026年1-8月）';
   } else if (mode === 'compare') {
-    document.getElementById('kpi-total-change').textContent = '2026年1-8月 vs 2025年同期口径';
-    document.getElementById('kpi-total-change').className = 'kpi-change';
-    document.getElementById('kpi-volume-change').textContent = '开采量同比下降';
-    document.getElementById('kpi-volume-change').className = 'kpi-change up';
-    document.getElementById('kpi-avgprice-change').textContent = '综合均价同比 +3.2%';
+    document.getElementById('kpi-total-change').textContent = '同比 -23.4%（1-8月同期对比）';
+    document.getElementById('kpi-total-change').className = 'kpi-change down';
+    document.getElementById('kpi-volume-change').textContent = '同比 -25.7%（1-8月同期对比）';
+    document.getElementById('kpi-volume-change').className = 'kpi-change down';
+    document.getElementById('kpi-avgprice-change').textContent = '同比 +3.0%（1-8月同期对比）';
     document.getElementById('kpi-avgprice-change').className = 'kpi-change up';
-    document.getElementById('kpi-aggregate-change').textContent = '骨料均价同比 +1.5%';
+    document.getElementById('kpi-aggregate-change').textContent = '同比 +1.6%（1-8月同期对比）';
     document.getElementById('kpi-aggregate-change').className = 'kpi-change up';
+    document.getElementById('title1').textContent = '爆破成本两年对比（1-8月同期，前6个结算期）';
+    document.getElementById('title2').textContent = '开采均价两年对比（1-8月同期）';
+    document.getElementById('title3').textContent = '爆破成本与开采量关系对比（1-8月同期）';
   }
 
   // 图1：爆破成本趋势（堆叠柱状图）
@@ -246,14 +249,13 @@ function renderCharts(data, mode) {
   };
 
   if (mode === 'compare') {
-    // 对比模式：前6个结算期对比
+    // 对比模式：前6个结算期对比（1-8月同期）
     option1.xAxis.data = ['1月','2-3月','4-5月/4月','6月/5月','7月/6月','8月/7月'];
     option1.series = [
       { name: '2025年总成本', type: 'bar', data: data2025.totalCost.slice(0, 6), itemStyle: { color: 'rgba(91,143,249,0.6)', borderRadius: [4, 4, 0, 0] }, barWidth: '30%' },
-      { name: '2026年总成本', type: 'bar', data: data2026.totalCost, itemStyle: { color: 'rgba(232,104,74,0.8)', borderRadius: [4, 4, 0, 0] }, barWidth: '30%' }
+      { name: '2026年总成本', type: 'bar', data: data2026.totalCost.slice(0, 6), itemStyle: { color: 'rgba(232,104,74,0.8)', borderRadius: [4, 4, 0, 0] }, barWidth: '30%' }
     ];
     option1.legend.data = ['2025年总成本', '2026年总成本'];
-    document.getElementById('title1').textContent = '爆破成本两年对比（前6个结算期）';
   } else {
     option1.series = [
       { name: '宕渣及土方', type: 'bar', stack: 'total', data: data.dregCost, itemStyle: { color: '#F6BD16' }, barWidth: '50%' },
@@ -280,12 +282,11 @@ function renderCharts(data, mode) {
     option2.xAxis.data = ['1月','2-3月','4-5月/4月','6月/5月','7月/6月','8月/7月'];
     option2.series = [
       { name: '宕渣2025', type: 'line', smooth: true, data: data2025.dregPrice.slice(0, 6), itemStyle: { color: '#F6BD16' }, lineStyle: { width: 2, type: 'dashed' }, symbol: 'circle', symbolSize: 6, connectNulls: true },
-      { name: '宕渣2026', type: 'line', smooth: true, data: data2026.dregPrice, itemStyle: { color: '#E8684A' }, lineStyle: { width: 2.5 }, symbol: 'circle', symbolSize: 8 },
+      { name: '宕渣2026', type: 'line', smooth: true, data: data2026.dregPrice.slice(0, 6), itemStyle: { color: '#E8684A' }, lineStyle: { width: 2.5 }, symbol: 'circle', symbolSize: 8 },
       { name: '骨料2025', type: 'line', smooth: true, data: data2025.aggPrice.slice(0, 6), itemStyle: { color: '#5B8FF9' }, lineStyle: { width: 2, type: 'dashed' }, symbol: 'circle', symbolSize: 6 },
-      { name: '骨料2026', type: 'line', smooth: true, data: data2026.aggPrice, itemStyle: { color: '#38A169' }, lineStyle: { width: 2.5 }, symbol: 'circle', symbolSize: 8 }
+      { name: '骨料2026', type: 'line', smooth: true, data: data2026.aggPrice.slice(0, 6), itemStyle: { color: '#38A169' }, lineStyle: { width: 2.5 }, symbol: 'circle', symbolSize: 8 }
     ];
     option2.legend.data = ['宕渣2025', '宕渣2026', '骨料2025', '骨料2026'];
-    document.getElementById('title2').textContent = '开采均价两年对比（前6个结算期）';
   }
   chart2.setOption(option2, true);
 
@@ -309,11 +310,10 @@ function renderCharts(data, mode) {
     option3.xAxis.data = ['1月','2-3月','4-5月/4月','6月/5月','7月/6月','8月/7月'];
     option3.series = [
       { name: '成本2025', type: 'bar', data: data2025.totalCost.slice(0, 6), itemStyle: { color: 'rgba(91,143,249,0.5)', borderRadius: [4, 4, 0, 0] }, barWidth: '30%' },
-      { name: '成本2026', type: 'bar', data: data2026.totalCost, itemStyle: { color: 'rgba(91,143,249,0.9)', borderRadius: [4, 4, 0, 0] }, barWidth: '30%' },
+      { name: '成本2026', type: 'bar', data: data2026.totalCost.slice(0, 6), itemStyle: { color: 'rgba(91,143,249,0.9)', borderRadius: [4, 4, 0, 0] }, barWidth: '30%' },
       { name: '开采量2025', type: 'line', yAxisIndex: 1, smooth: true, data: data2025.volume.slice(0, 6), itemStyle: { color: '#F6BD16' }, lineStyle: { width: 2, type: 'dashed' }, symbol: 'circle', symbolSize: 6 },
-      { name: '开采量2026', type: 'line', yAxisIndex: 1, smooth: true, data: data2026.volume, itemStyle: { color: '#E8684A' }, lineStyle: { width: 2.5 }, symbol: 'circle', symbolSize: 8 }
+      { name: '开采量2026', type: 'line', yAxisIndex: 1, smooth: true, data: data2026.volume.slice(0, 6), itemStyle: { color: '#E8684A' }, lineStyle: { width: 2.5 }, symbol: 'circle', symbolSize: 8 }
     ];
-    document.getElementById('title3').textContent = '爆破成本与开采量两年对比（前6个结算期）';
   }
   chart3.setOption(option3, true);
 }
