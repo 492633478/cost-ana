@@ -9,7 +9,8 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f0f2f5; padding: 20px; }
   .dashboard { max-width: 1200px; margin: 0 auto; }
-  .header { background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%); color: #fff; padding: 24px 32px; border-radius: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .header { background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); color: #fff; padding: 20px 32px; border-radius: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .header-logo { height: 40px; width: auto; margin-right: 16px; }
   .header h1 { font-size: 22px; }
   .header p { font-size: 13px; opacity: 0.8; margin-top: 4px; }
   .toggle-group { display: flex; gap: 0; background: rgba(255,255,255,0.15); border-radius: 8px; padding: 4px; }
@@ -51,6 +52,7 @@
 <div class="dashboard">
 
 <div class="header">
+  <img src="logo.png" class="header-logo" alt="浙江交通集团">
   <div>
     <h1>人工成本交互式分析仪表盘</h1>
     <p>点击右上角按钮切换年份数据 | 数据来源：核心成本控制-人工费</p>
@@ -64,7 +66,7 @@
 
 <div class="kpi-grid">
   <div class="kpi-card">
-    <div class="kpi-label">总产能（1-7月）</div>
+    <div class="kpi-label" id="kpi-label-capacity">总产能</div>
     <div class="kpi-single" id="kpi-single-capacity">
       <div class="kpi-value"><span id="kpi-capacity">2011.64</span><span class="kpi-unit"> 万吨</span></div>
     </div>
@@ -79,7 +81,7 @@
     <div class="kpi-change" id="kpi-capacity-change">月均167.6万吨</div>
   </div>
   <div class="kpi-card">
-    <div class="kpi-label">总工资（1-7月）</div>
+    <div class="kpi-label" id="kpi-label-salary">总工资</div>
     <div class="kpi-single" id="kpi-single-salary">
       <div class="kpi-value"><span id="kpi-salary">3186.67</span><span class="kpi-unit"> 万元</span></div>
     </div>
@@ -94,7 +96,7 @@
     <div class="kpi-change" id="kpi-salary-change">不含137.71万年终奖</div>
   </div>
   <div class="kpi-card">
-    <div class="kpi-label">单吨人工成本（1-7月）</div>
+    <div class="kpi-label" id="kpi-label-cost">单吨人工成本</div>
     <div class="kpi-single" id="kpi-single-cost">
       <div class="kpi-value"><span id="kpi-cost">1.58</span><span class="kpi-unit"> 元/吨</span></div>
     </div>
@@ -109,7 +111,7 @@
     <div class="kpi-change down" id="kpi-cost-change">规模效应显著</div>
   </div>
   <div class="kpi-card">
-    <div class="kpi-label">新老线效率差（1-7月）</div>
+    <div class="kpi-label" id="kpi-label-gap">新老线效率差</div>
     <div class="kpi-single" id="kpi-single-gap">
       <div class="kpi-value"><span id="kpi-gap">35.4</span><span class="kpi-unit"> %</span></div>
     </div>
@@ -195,7 +197,11 @@ function renderCharts(data, mode) {
   }
 
   if (mode === '2025') {
-    document.getElementById('kpi-capacity-change').textContent = '月均167.6万吨';
+    document.getElementById('kpi-label-capacity').textContent = '总产能';
+    document.getElementById('kpi-label-salary').textContent = '总工资';
+    document.getElementById('kpi-label-cost').textContent = '单吨人工成本';
+    document.getElementById('kpi-label-gap').textContent = '新老线效率差';
+    document.getElementById('kpi-capacity-change').textContent = '全年累计，月均167.6万吨';
     document.getElementById('kpi-capacity-change').className = 'kpi-change';
     document.getElementById('kpi-salary-change').textContent = '不含137.71万年终奖';
     document.getElementById('kpi-salary-change').className = 'kpi-change';
@@ -207,6 +213,10 @@ function renderCharts(data, mode) {
     document.getElementById('title2').textContent = '新线 vs 老线单吨成本对比（2025年）';
     document.getElementById('title3').textContent = '月工资与月产能关系（2025年）';
   } else if (mode === '2026') {
+    document.getElementById('kpi-label-capacity').textContent = '总产能（1-7月累计）';
+    document.getElementById('kpi-label-salary').textContent = '总工资（1-7月累计）';
+    document.getElementById('kpi-label-cost').textContent = '单吨人工成本（1-7月）';
+    document.getElementById('kpi-label-gap').textContent = '新老线效率差（1-7月）';
     document.getElementById('kpi-capacity-change').textContent = '1-7月，月均131.3万吨';
     document.getElementById('kpi-capacity-change').className = 'kpi-change';
     document.getElementById('kpi-salary-change').textContent = '1-7月累计';
@@ -219,6 +229,10 @@ function renderCharts(data, mode) {
     document.getElementById('title2').textContent = '新线 vs 老线单吨成本对比（2026年1-7月）';
     document.getElementById('title3').textContent = '月工资与月产能关系（2026年1-7月）';
   } else if (mode === 'compare') {
+    document.getElementById('kpi-label-capacity').textContent = '总产能（1-7月同期对比）';
+    document.getElementById('kpi-label-salary').textContent = '总工资（1-7月同期对比）';
+    document.getElementById('kpi-label-cost').textContent = '单吨人工成本（1-7月同期对比）';
+    document.getElementById('kpi-label-gap').textContent = '新老线效率差（1-7月同期对比）';
     // 对比模式：红字显示同比变化
     document.getElementById('kpi-capacity-change').textContent = '同比 -10.7%（2025年1-7月对比）';
     document.getElementById('kpi-capacity-change').className = 'kpi-change up';

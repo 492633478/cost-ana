@@ -9,7 +9,8 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f0f2f5; padding: 20px; }
   .dashboard { max-width: 1200px; margin: 0 auto; }
-  .header { background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%); color: #fff; padding: 24px 32px; border-radius: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .header { background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); color: #fff; padding: 20px 32px; border-radius: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .header-logo { height: 40px; width: auto; margin-right: 16px; }
   .header h1 { font-size: 22px; }
   .header p { font-size: 13px; opacity: 0.8; margin-top: 4px; }
   .toggle-group { display: flex; gap: 0; background: rgba(255,255,255,0.15); border-radius: 8px; padding: 4px; }
@@ -51,6 +52,7 @@
 <div class="dashboard">
 
 <div class="header">
+  <img src="logo.png" class="header-logo" alt="浙江交通集团">
   <div>
     <h1>电费成本交互式分析仪表盘</h1>
     <p>点击右上角按钮切换年份数据 | 数据来源：核心成本控制-电费</p>
@@ -159,12 +161,12 @@ const data2025 = {
 };
 
 const data2026 = {
-  months: ['1月','2月','3月','4月','5月','6月','7月'],
-  costPerTon: [2.24, 3.32, 2.17, 2.21, 2.17, 2.05, 2.81],
-  energyPerTon: [3.49, 3.59, 3.48, 3.63, 3.58, 3.64, 3.93],
-  electricity: [428.92, 159.65, 289.07, 357.80, 324.78, 312.21, 253.12],
-  capacity: [191.57, 48.07, 133.22, 161.83, 149.58, 151.99, 90.14],
-  kpi: { electricity: '2125.55', capacity: '926.40', cost: '2.29', energy: '3.62' }
+  months: ['1月','2月','3月','4月','5月','6月','7月','8月'],
+  costPerTon: [2.23, 3.46, 2.15, 2.27, 2.18, 2.06, 2.87, 2.83],
+  energyPerTon: [3.48, 3.74, 3.44, 3.72, 3.59, 3.65, 4.02, 3.97],
+  electricity: [428.92, 159.65, 289.07, 357.80, 324.78, 312.21, 253.12, 242.87],
+  capacity: [191.95, 46.08, 134.49, 157.97, 149.28, 151.60, 88.06, 85.86],
+  kpi: { electricity: '2368.43', capacity: '1005.30', cost: '2.36', energy: '3.66' }
 };
 
 // ========== 初始化图表 ==========
@@ -205,17 +207,17 @@ function renderCharts(data, mode) {
     document.getElementById('title2').textContent = '单吨电耗趋势（2025年）';
     document.getElementById('title3').textContent = '月电费与月产能关系（2025年）';
   } else if (mode === '2026') {
-    document.getElementById('kpi-electricity-change').textContent = '1-7月累计';
+    document.getElementById('kpi-electricity-change').textContent = '1-8月累计';
     document.getElementById('kpi-electricity-change').className = 'kpi-change';
-    document.getElementById('kpi-capacity-change').textContent = '1-7月，月均132.3万吨';
+    document.getElementById('kpi-capacity-change').textContent = '1-8月，月均125.7万吨';
     document.getElementById('kpi-capacity-change').className = 'kpi-change';
     document.getElementById('kpi-cost-change').textContent = '与2025年基本持平';
     document.getElementById('kpi-cost-change').className = 'kpi-change down';
-    document.getElementById('kpi-energy-change').textContent = '7月能耗上升';
+    document.getElementById('kpi-energy-change').textContent = '7-8月能耗上升';
     document.getElementById('kpi-energy-change').className = 'kpi-change up';
-    document.getElementById('title1').textContent = '单吨电费月度趋势（2026年1-7月）';
-    document.getElementById('title2').textContent = '单吨电耗趋势（2026年1-7月）';
-    document.getElementById('title3').textContent = '月电费与月产能关系（2026年1-7月）';
+    document.getElementById('title1').textContent = '单吨电费月度趋势（2026年1-8月）';
+    document.getElementById('title2').textContent = '单吨电耗趋势（2026年1-8月）';
+    document.getElementById('title3').textContent = '月电费与月产能关系（2026年1-8月）';
   } else if (mode === 'compare') {
     document.getElementById('kpi-electricity-change').textContent = '同比 -11.8%（2025年1-7月对比）';
     document.getElementById('kpi-electricity-change').className = 'kpi-change down';

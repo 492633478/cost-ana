@@ -9,7 +9,8 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f0f2f5; padding: 20px; }
   .dashboard { max-width: 1200px; margin: 0 auto; }
-  .header { background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%); color: #fff; padding: 24px 32px; border-radius: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .header { background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); color: #fff; padding: 20px 32px; border-radius: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .header-logo { height: 40px; width: auto; margin-right: 16px; }
   .header h1 { font-size: 22px; }
   .header p { font-size: 13px; opacity: 0.8; margin-top: 4px; }
   .toggle-group { display: flex; gap: 0; background: rgba(255,255,255,0.15); border-radius: 8px; padding: 4px; }
@@ -51,6 +52,7 @@
 <div class="dashboard">
 
 <div class="header">
+  <img src="logo.png" class="header-logo" alt="浙江交通集团">
   <div>
     <h1>爆破成本交互式分析仪表盘</h1>
     <p>点击右上角按钮切换年份数据 | 按结算期统计（非自然月）| 数据来源：核心成本控制-爆破成本</p>
