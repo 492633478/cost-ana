@@ -72,9 +72,9 @@
     </div>
     <div class="kpi-compare" id="kpi-compare-electricity">
       <div class="kpi-compare-row">
-        <span class="kpi-old-val">2410.92</span>
+        <span class="kpi-old-val">2908.42</span>
         <span class="kpi-arrow">→</span>
-        <span class="kpi-new-val" style="color:#5B8FF9">2125.55</span>
+        <span class="kpi-new-val" style="color:#5B8FF9">2368.43</span>
         <span class="kpi-compare-unit">万元</span>
       </div>
     </div>
@@ -87,9 +87,9 @@
     </div>
     <div class="kpi-compare" id="kpi-compare-capacity">
       <div class="kpi-compare-row">
-        <span class="kpi-old-val">1029.17</span>
+        <span class="kpi-old-val">1237.94</span>
         <span class="kpi-arrow">→</span>
-        <span class="kpi-new-val" style="color:#F6BD16">926.40</span>
+        <span class="kpi-new-val" style="color:#F6BD16">1005.30</span>
         <span class="kpi-compare-unit">万吨</span>
       </div>
     </div>
@@ -102,9 +102,9 @@
     </div>
     <div class="kpi-compare" id="kpi-compare-cost">
       <div class="kpi-compare-row">
-        <span class="kpi-old-val">2.34</span>
+        <span class="kpi-old-val">2.35</span>
         <span class="kpi-arrow">→</span>
-        <span class="kpi-new-val" style="color:#38A169">2.29</span>
+        <span class="kpi-new-val" style="color:#E8684A">2.36</span>
         <span class="kpi-compare-unit">元/吨</span>
       </div>
     </div>
@@ -117,9 +117,9 @@
     </div>
     <div class="kpi-compare" id="kpi-compare-energy">
       <div class="kpi-compare-row">
-        <span class="kpi-old-val">3.62</span>
+        <span class="kpi-old-val">3.55</span>
         <span class="kpi-arrow">→</span>
-        <span class="kpi-new-val" style="color:#38A169">3.62</span>
+        <span class="kpi-new-val" style="color:#E8684A">3.66</span>
         <span class="kpi-compare-unit">kwh/吨</span>
       </div>
     </div>
@@ -219,14 +219,14 @@ function renderCharts(data, mode) {
     document.getElementById('title2').textContent = '单吨电耗趋势（2026年1-8月）';
     document.getElementById('title3').textContent = '月电费与月产能关系（2026年1-8月）';
   } else if (mode === 'compare') {
-    document.getElementById('kpi-electricity-change').textContent = '同比 -11.8%（2025年1-7月对比）';
+    document.getElementById('kpi-electricity-change').textContent = '同比 -18.6%（1-8月同期对比）';
     document.getElementById('kpi-electricity-change').className = 'kpi-change down';
-    document.getElementById('kpi-capacity-change').textContent = '同比 -10.0%（2025年1-7月对比）';
-    document.getElementById('kpi-capacity-change').className = 'kpi-change up';
-    document.getElementById('kpi-cost-change').textContent = '同比 -2.1%（2025年1-7月对比）';
-    document.getElementById('kpi-cost-change').className = 'kpi-change down';
-    document.getElementById('kpi-energy-change').textContent = '同比基本持平（2025年1-7月对比）';
-    document.getElementById('kpi-energy-change').className = 'kpi-change';
+    document.getElementById('kpi-capacity-change').textContent = '同比 -18.8%（1-8月同期对比）';
+    document.getElementById('kpi-capacity-change').className = 'kpi-change down';
+    document.getElementById('kpi-cost-change').textContent = '同比 +0.4%（1-8月同期对比）';
+    document.getElementById('kpi-cost-change').className = 'kpi-change up';
+    document.getElementById('kpi-energy-change').textContent = '同比 +3.1%（1-8月同期对比）';
+    document.getElementById('kpi-energy-change').className = 'kpi-change up';
   }
 
   // 图1：单吨电费趋势
@@ -241,11 +241,11 @@ function renderCharts(data, mode) {
 
   if (mode === 'compare') {
     option1.series = [
-      { name: '2025年', type: 'line', smooth: true, data: data2025.costPerTon.slice(0, 7), itemStyle: { color: '#5B8FF9' }, lineStyle: { width: 2.5 }, areaStyle: { color: 'rgba(91,143,249,0.1)' }, symbol: 'circle', symbolSize: 8 },
+      { name: '2025年', type: 'line', smooth: true, data: data2025.costPerTon.slice(0, 8), itemStyle: { color: '#5B8FF9' }, lineStyle: { width: 2.5 }, areaStyle: { color: 'rgba(91,143,249,0.1)' }, symbol: 'circle', symbolSize: 8 },
       { name: '2026年', type: 'line', smooth: true, data: data2026.costPerTon, itemStyle: { color: '#F6BD16' }, lineStyle: { width: 2.5 }, areaStyle: { color: 'rgba(246,189,22,0.1)' }, symbol: 'circle', symbolSize: 8 }
     ];
     option1.legend.data = ['2025年', '2026年'];
-    document.getElementById('title1').textContent = '单吨电费趋势对比（2025 vs 2026，1-7月）';
+    document.getElementById('title1').textContent = '单吨电费趋势对比（2025 vs 2026，1-8月）';
   } else {
     option1.series = [
       { name: '单吨电费', type: 'line', smooth: true, data: data.costPerTon, itemStyle: { color: mode === '2025' ? '#5B8FF9' : '#F6BD16' }, lineStyle: { width: 2.5 }, areaStyle: { color: mode === '2025' ? 'rgba(91,143,249,0.12)' : 'rgba(246,189,22,0.12)' }, symbol: 'circle', symbolSize: 8, label: { show: true, position: 'top', fontSize: 10, formatter: '{c}' } }
@@ -267,13 +267,13 @@ function renderCharts(data, mode) {
     ]
   };
   if (mode === 'compare') {
-    option2.xAxis.data = data2025.months.slice(0, 7);
+    option2.xAxis.data = data2025.months.slice(0, 8);
     option2.series = [
-      { name: '2025年', type: 'line', smooth: true, data: data2025.energyPerTon.slice(0, 7), itemStyle: { color: '#5B8FF9' }, lineStyle: { width: 2, type: 'dashed' }, symbol: 'circle', symbolSize: 6 },
+      { name: '2025年', type: 'line', smooth: true, data: data2025.energyPerTon.slice(0, 8), itemStyle: { color: '#5B8FF9' }, lineStyle: { width: 2, type: 'dashed' }, symbol: 'circle', symbolSize: 6 },
       { name: '2026年', type: 'line', smooth: true, data: data2026.energyPerTon, itemStyle: { color: '#F6BD16' }, lineStyle: { width: 2.5 }, symbol: 'circle', symbolSize: 8 }
     ];
     option2.legend.data = ['2025年', '2026年'];
-    document.getElementById('title2').textContent = '单吨电耗趋势对比（2025 vs 2026，1-7月）';
+    document.getElementById('title2').textContent = '单吨电耗趋势对比（2025 vs 2026，1-8月）';
   }
   chart2.setOption(option2, true);
 
@@ -294,14 +294,14 @@ function renderCharts(data, mode) {
     ]
   };
   if (mode === 'compare') {
-    option3.xAxis.data = data2025.months.slice(0, 7);
+    option3.xAxis.data = data2025.months.slice(0, 8);
     option3.series = [
-      { name: '电费2025', type: 'bar', data: data2025.electricity.slice(0, 7), itemStyle: { color: 'rgba(91,143,249,0.5)', borderRadius: [4, 4, 0, 0] }, barWidth: '30%' },
+      { name: '电费2025', type: 'bar', data: data2025.electricity.slice(0, 8), itemStyle: { color: 'rgba(91,143,249,0.5)', borderRadius: [4, 4, 0, 0] }, barWidth: '30%' },
       { name: '电费2026', type: 'bar', data: data2026.electricity, itemStyle: { color: 'rgba(91,143,249,0.9)', borderRadius: [4, 4, 0, 0] }, barWidth: '30%' },
-      { name: '产能2025', type: 'line', yAxisIndex: 1, smooth: true, data: data2025.capacity.slice(0, 7), itemStyle: { color: '#F6BD16' }, lineStyle: { width: 2, type: 'dashed' }, symbol: 'circle', symbolSize: 6 },
+      { name: '产能2025', type: 'line', yAxisIndex: 1, smooth: true, data: data2025.capacity.slice(0, 8), itemStyle: { color: '#F6BD16' }, lineStyle: { width: 2, type: 'dashed' }, symbol: 'circle', symbolSize: 6 },
       { name: '产能2026', type: 'line', yAxisIndex: 1, smooth: true, data: data2026.capacity, itemStyle: { color: '#E8684A' }, lineStyle: { width: 2.5 }, symbol: 'circle', symbolSize: 8 }
     ];
-    document.getElementById('title3').textContent = '月电费与月产能两年对比（1-7月）';
+    document.getElementById('title3').textContent = '月电费与月产能两年对比（1-8月）';
   }
   chart3.setOption(option3, true);
 }
