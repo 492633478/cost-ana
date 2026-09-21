@@ -72,9 +72,9 @@
     </div>
     <div class="kpi-compare" id="kpi-compare-total">
       <div class="kpi-compare-row">
-        <span class="kpi-old-val">12036.42</span>
+        <span class="kpi-old-val">11438.71</span>
         <span class="kpi-arrow">→</span>
-        <span class="kpi-new-val" style="color:#5B8FF9">9216.59</span>
+        <span class="kpi-new-val" style="color:#5B8FF9">9775.72</span>
         <span class="kpi-compare-unit">万元</span>
       </div>
     </div>
@@ -89,7 +89,7 @@
       <div class="kpi-compare-row">
         <span class="kpi-old-val">1735.95</span>
         <span class="kpi-arrow">→</span>
-        <span class="kpi-new-val" style="color:#5B8FF9">1290.62</span>
+        <span class="kpi-new-val" style="color:#5B8FF9">1290.63</span>
         <span class="kpi-compare-unit">万吨</span>
       </div>
     </div>
@@ -102,9 +102,9 @@
     </div>
     <div class="kpi-compare" id="kpi-compare-avgprice">
       <div class="kpi-compare-row">
-        <span class="kpi-old-val">6.93</span>
+        <span class="kpi-old-val">6.59</span>
         <span class="kpi-arrow">→</span>
-        <span class="kpi-new-val" style="color:#E8684A">7.14</span>
+        <span class="kpi-new-val" style="color:#E8684A">7.57</span>
         <span class="kpi-compare-unit">元/吨</span>
       </div>
     </div>
@@ -117,9 +117,9 @@
     </div>
     <div class="kpi-compare" id="kpi-compare-aggregate">
       <div class="kpi-compare-row">
-        <span class="kpi-old-val">6.84</span>
+        <span class="kpi-old-val">6.44</span>
         <span class="kpi-arrow">→</span>
-        <span class="kpi-new-val" style="color:#E8684A">6.95</span>
+        <span class="kpi-new-val" style="color:#E8684A">7.49</span>
         <span class="kpi-compare-unit">元/吨</span>
       </div>
     </div>
@@ -155,24 +155,24 @@
 const data2025 = {
   periods: ['1月','2-3月','4月','5月','6月','7月','8月','9月','10月','11月'],
   dregCost: [240.70, 512.00, 603.80, 308.50, 285.20, 0, 0, 0, 0, 0],
-  aggCost: [743.99, 1171.07, 2535.67, 1405.75, 1398.61, 1317.12, 1513.66, 1183.15, 1347.69, 1407.58],
-  totalCost: [984.69, 1683.07, 3139.47, 1714.25, 1683.81, 1317.12, 1513.66, 1183.15, 1347.69, 1407.58],
+  aggCost: [906.10, 1442.17, 884.91, 1400.99, 1678.89, 1723.53, 1451.92, 1570.90, 1235.55, 1478.90],
+  totalCost: [1146.80, 1954.17, 1488.71, 1709.49, 1964.09, 1723.53, 1451.92, 1570.90, 1235.55, 1478.90],
   dregPrice: [7.85, 7.62, 7.29, 7.43, 7.12, 0, 0, 0, 0, 0],
-  aggPrice: [6.76, 6.76, 6.77, 6.93, 6.97, 6.85, 6.88, 6.85, 6.85, 6.89],
+  aggPrice: [8.23, 8.32, 2.36, 6.91, 8.37, 8.96, 6.60, 9.09, 6.28, 7.24],
   volume: [140.73, 240.42, 457.45, 244.36, 240.70, 192.28, 220.01, 172.72, 196.77, 204.29],
-  kpi: { total: '15974.49', volume: '2309.73', avgprice: '6.92', aggregate: '6.85' }
+  kpi: { total: '15724.06', volume: '2309.73', avgprice: '6.81', aggregate: '6.73' }
 };
 
 // 2026年：6个结算期（1月、2-3月、4-5月、6月、7月、8月）
 const data2026 = {
   periods: ['1月','2-3月','4-5月','6月','7月','8月'],
   dregCost: [528.82, 318.70, 711.04, 281.50, 27.88, 88.24],
-  aggCost: [1274.79, 1311.68, 2152.94, 1259.00, 541.00, 721.00],
-  totalCost: [1803.61, 1630.38, 2863.98, 1540.50, 568.88, 809.24],
+  aggCost: [1296.72, 1383.73, 2343.39, 1321.89, 719.12, 754.69],
+  totalCost: [1825.54, 1702.43, 3054.43, 1603.39, 747.00, 842.93],
   dregPrice: [8.58, 6.22, 8.50, 8.01, 8.69, 7.88],
-  aggPrice: [6.86, 6.84, 6.94, 7.06, 7.11, 7.06],
+  aggPrice: [6.98, 7.22, 7.55, 7.41, 9.45, 7.39],
   volume: [247.51, 243.01, 393.87, 213.55, 79.34, 113.35],
-  kpi: { total: '9216.59', volume: '1290.62', avgprice: '7.14', aggregate: '6.95' }
+  kpi: { total: '9775.72', volume: '1290.63', avgprice: '7.57', aggregate: '7.49' }
 };
 
 // ========== 初始化图表 ==========
@@ -203,9 +203,9 @@ function renderCharts(data, mode) {
   if (mode === '2025') {
     document.getElementById('kpi-total-change').textContent = '全年累计（10个结算期）';
     document.getElementById('kpi-total-change').className = 'kpi-change';
-    document.getElementById('kpi-volume-change').textContent = '宕渣262.22+骨料2047.51万吨';
+    document.getElementById('kpi-volume-change').textContent = '宕渣262.22+骨料2047.51万吨（含全部费用）';
     document.getElementById('kpi-volume-change').className = 'kpi-change';
-    document.getElementById('kpi-avgprice-change').textContent = '宕渣7.30+骨料6.85加权';
+    document.getElementById('kpi-avgprice-change').textContent = '宕渣7.30+骨料6.73加权（以计量合计为准）';
     document.getElementById('kpi-avgprice-change').className = 'kpi-change';
     document.getElementById('kpi-aggregate-change').textContent = '爆破开采占比97.8%';
     document.getElementById('kpi-aggregate-change').className = 'kpi-change down';
@@ -225,13 +225,13 @@ function renderCharts(data, mode) {
     document.getElementById('title2').textContent = '开采均价趋势（2026年1-8月，宕渣 vs 骨料）';
     document.getElementById('title3').textContent = '月爆破成本与开采量关系（2026年1-8月）';
   } else if (mode === 'compare') {
-    document.getElementById('kpi-total-change').textContent = '同比 -23.4%（1-8月同期对比）';
+    document.getElementById('kpi-total-change').textContent = '同比 -14.5%（1-8月同期对比）';
     document.getElementById('kpi-total-change').className = 'kpi-change down';
     document.getElementById('kpi-volume-change').textContent = '同比 -25.7%（1-8月同期对比）';
     document.getElementById('kpi-volume-change').className = 'kpi-change down';
-    document.getElementById('kpi-avgprice-change').textContent = '同比 +3.0%（1-8月同期对比）';
+    document.getElementById('kpi-avgprice-change').textContent = '同比 +14.9%（1-8月同期对比）';
     document.getElementById('kpi-avgprice-change').className = 'kpi-change up';
-    document.getElementById('kpi-aggregate-change').textContent = '同比 +1.6%（1-8月同期对比）';
+    document.getElementById('kpi-aggregate-change').textContent = '同比 +16.3%（1-8月同期对比）';
     document.getElementById('kpi-aggregate-change').className = 'kpi-change up';
     document.getElementById('title1').textContent = '爆破成本两年对比（1-8月同期，前6个结算期）';
     document.getElementById('title2').textContent = '开采均价两年对比（1-8月同期）';
